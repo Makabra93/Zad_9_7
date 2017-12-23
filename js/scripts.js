@@ -1,10 +1,26 @@
 var newGameBtn = document.getElementById('js-newGameButton');
-
-newGameBtn.addEventListener('click', newGame);
-
 var pickRock        = document.getElementById('js-playerPick_rock');
 var pickPaper       = document.getElementById('js-playerPick_paper');
 var pickScissors    = document.getElementById('js-playerPick_scissors');
+var newGameElem     = document.getElementById('js-newGameElement');
+var pickElem        = document.getElementById('js-playerPickElement');
+var resultsElem     = document.getElementById('js-resultsTableElement');
+var playerPointsElem    = document.getElementById('js-playerPoints');
+var playerNameElem      = document.getElementById('js-playerName');
+var computerPointsElem  = document.getElementById('js-computerPoints');
+
+var gameState = 'notStarted',  //started // ended
+player = {
+    name: '',
+    score: 0
+},
+computer = {
+    score: 0
+};
+
+newGameBtn.addEventListener('click', newGame);
+
+
 
 pickRock.addEventListener('click', function() { playerPick('rock') });
 pickPaper.addEventListener('click', function() { playerPick('paper') });
@@ -18,9 +34,7 @@ var gameState = 'notStarted',  //started // ended
     computer = {
         score: 0
     };
-var newGameElem     = document.getElementById('js-newGameElement');
-var pickElem        = document.getElementById('js-playerPickElement');
-var resultsElem     = document.getElementById('js-resultsTableElement');
+
 
 function setGameElements() {
     switch(gameState) {
@@ -41,9 +55,6 @@ function setGameElements() {
 
 setGameElements();
 
-var playerPointsElem    = document.getElementById('js-playerPoints');
-var playerNameElem      = document.getElementById('js-playerName');
-var computerPointsElem  = document.getElementById('js-computerPoints');
 
 function newGame() {
     player.name = prompt('Please enter your name', 'imię gracza');
@@ -56,9 +67,7 @@ function newGame() {
       setGamePoints(); // This function has not been created yet
     }
 }
-function playerPick(playerPick) {
-    console.log(playerPick);
-}
+
 function getComputerPick() {
     var possiblePicks = ['rock', 'paper', 'scissors'];
     return possiblePicks[Math.floor(Math.random()*3)];
